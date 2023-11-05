@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API testing</title>
+  </head>
+  <body>
+    <script>
+      const hostname = "http://localhost:3000";
+
+      async function postRequest() {
+        const users = await fetch(hostname + "/users/new", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: {
+              username: "guest",
+              email: "guest",
+              password: "guest",
+            },
+          }),
+        });
+        console.log(await users.json());
+      }
+
+      async function getRequest() {
+        const classes = await fetch(hostname + "/classes", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: {
+              user_id: 1,
+            },
+          }),
+        });
+
+        console.log(await classes.json());
+      }
+
+      getRequest();
+    </script>
+  </body>
+</html>
